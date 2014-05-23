@@ -1,0 +1,62 @@
+﻿@model project.Models.Currencies
+@{
+    ViewBag.Title = "Currency Converter Nx";
+}
+<div id="body">
+    <br />
+    <div id="pres">
+    <p>Ici, vous pouvez convertir vos valeurs d'une devise à une autre.
+Les cours des devises utilisés pour la conversion sont actualisés à chaque exécution depuis <a href="http://rate-exchange.appspot.com/">rate-exchange.appspot.com</a>
+        <br />
+        <br />
+Notre application a été réalisé avec ASP .NET MVC 4 dans un projet de type Web API sur Visual Studio 2012. 
+L'architecture de notre application est RESTFul. La requete de conversion est envoyé en Ajax. Utilisation succincte de JQuery et manipulation de JSON.
+        <br />
+Bonne conversion ;)</p>
+        </div>
+    <br />
+    @Html.Label("Valeur de départ :") 
+        @Html.TextBox("ValueOrig", null, new { @id = "valOrig"})
+
+    @Html.Label("Sa devise :")
+        <select name="deviseOrig" id="devDep">
+            @foreach (var o in Model.listCurrencies)
+            {
+                <option value="@o.Key">@o.Value</option>
+            }
+        </select>
+    <br />
+    <br />
+    @Html.Label("Sevise demandée :")
+        
+    <select name="devisefinale" id="devFin">
+        @foreach (var o in Model.listCurrencies)
+        {
+            <option value="@o.Key">@o.Value</option>
+        }
+    </select>
+        <br />
+        <br />
+        <input type="submit" value="Calculer" id="button"/>
+        <br />
+        <br />
+    <input name="Valuefinale" type="text" id="valuefinale" />
+
+    <script>
+    $('#button').on('click', function () {
+        var item = $(document);
+            var valOrig = item.find("#valOrig").val();
+            var devDep = item.find("#devDep").val();
+            var devFin = item.find("#devFin").val();
+            
+            $.ajax({
+                type: "GET",
+                url: "/api/Devise",
+                data: ({ ValueOrig: valOrig, deviseOrig: devDep, devisefinale: devFin }),
+                success: function (result) {
+                    $("#valuefinale").val(result);
+                }
+            });
+    })
+    </script>
+</div>
