@@ -15,17 +15,11 @@ namespace project.Controllers
         {
             var client = new WebClient();
             string html = client.DownloadString("http://rate-exchange.appspot.com/currency?from=" + deviseOrig + "&to=" + devisefinale);
-
             JObject o = JObject.Parse(html);
-
             double rate = Convert.ToDouble(o["rate"].ToString());
-
             double value = double.Parse(ValueOrig);
-
             double res = rate * value;
-
             return res.ToString();
         }
-
     }
 }
