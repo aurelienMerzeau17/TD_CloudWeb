@@ -15,11 +15,11 @@
 // Edit the line below, and replace http://your-piwik-domain.example.org/piwik/
 // with your Piwik URL ending with a slash.
 // This URL will never be revealed to visitors or search engines.
-$PIWIK_URL = 'http://your-piwik-domain.example.org/piwik/';
+$PIWIK_URL = 'http://bizperf45.siege.np6.local/analytics/index.php';
 
 // Edit the line below, and replace xyz by the token_auth for the user "UserTrackingAPI"
 // which you created when you followed instructions above.
-$TOKEN_AUTH = 'xyz';
+$TOKEN_AUTH = '73178262bcab1aaa51149b6bce4be7e6';
 
 // Maximum time, in seconds, to wait for the Piwik server to return the 1*1 GIF
 $timeout = 5;
